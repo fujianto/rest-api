@@ -3,11 +3,13 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const ejs = require('ejs');
 const app = express();
+const cors = require('cors')
 
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('dev'));
+app.use(cors());
 
 const apiRoute = require('./routers/apiRoute');
 app.use('/api', apiRoute);
