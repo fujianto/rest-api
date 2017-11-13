@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Standalone Web App</title>
+</head>
+<body>
+	<div id="message">
+
+	</div><!-- /#message -->
+
+	<form onSubmit="checkLogin()" method="POST">
+		<input type="text" name="username" id="username" placeholder="Username" />
+		<input type="password" name="password" id="password"  value="" placeholder="Password">
+		<input type="submit" id="btnLogin" value="Sign In">
+	</form>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#message').text(location.search);
+		})
+
+		jQuery("#btnLogin").click(function(e) {
+			e.preventDefault();
+
+			let txtUsername = document.getElementById('username').value;
+			let txtPassword = document.getElementById('password').value;
+			let url = 'http://localhost:3000/api/signin';
+
+			if (txtUsername.length < 3 || txtPassword.length < 3) {
+				alert("Incorrect Username or Password")
+			} else {
+				jQuery.ajax({
+					method:"POST",
+					url: url,
+					data:{
+						username: txtUsername,
+						password: txtPassword
+					},
+					success: function(result) {
+
+						console.log(result);
+						localStorage.setItem("token", result.token);
+						window.location = "http://localhost:3000/profiles/"+result.userId;
+					}
+				});
+			}
+		})
+	</script>
+</body>
+</html>

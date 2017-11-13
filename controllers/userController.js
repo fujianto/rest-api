@@ -84,7 +84,7 @@ const signUp = (req, res) => {
 }
 
 const signIn = (req, res) => {
-	res.send({message: 'Login Success', token: req.header.token});
+	res.send({message: 'Login Success', token: req.header.token, userId: req.header.id});
 }
 
 module.exports = {

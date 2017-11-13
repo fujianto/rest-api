@@ -22,6 +22,7 @@ const signIn = (req, res, next) => {
 	  				process.env.SECRET,
 	  				(err, token) => {
 	  					req.header.token = token;
+	  					req.header.id = user.id
 	  					next();
 	  				}
 	  			);
