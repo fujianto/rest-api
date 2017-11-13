@@ -53,7 +53,7 @@ const updateUserById = (req, res) => {
 		{
 			username: req.body.username,
 			password: hash,
-			isAdmin: req.body.isAdmin === 'true' ? true : false,
+			isAdmin: req.verifiedUser.isAdmin === true ? req.body.isAdmin : false,
 			fullname: req.body.fullname
 	  },
 		{
@@ -84,39 +84,7 @@ const signUp = (req, res) => {
 }
 
 const signIn = (req, res) => {
-	// Cek jika user ada di db, Jika Ya buat token
-
-	User.findOne({
-		where: {
-			username: req.body.username
-		}
-	}).then(user => {
-		if (user) {
-			bcrypt.compare(req.body.password, user.password).then(function(result) {
-	  		if (result) {
-	  			let token =
-	  				jwt.sign(
-	  					{
-	  						id: user.id,
-	  						username: user.username,
-	  						isAdmin: user.isAdmin,
-	  						fullname: user.fullname
-	  					}, process.env.SECRET,
-	  					(err, token) => {
-	  						req.header.token = token;
-	  						res.send({message: 'Login Success', token: token});
-	  					}
-  					);
-
-	  		} else {
-	  			res.send({message: 'Login Failed'})
-	  		}
-			});
-		} else {
-			res.send({message: 'Invalid Sign In'})
-		}
-
-	}).catch(err => res.send(err.message));
+	res.send({message: 'Login Success', token: req.header.token});
 }
 
 module.exports = {

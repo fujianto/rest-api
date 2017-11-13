@@ -4,14 +4,14 @@ const User = require('../models').User;
 const userController = require('../controllers/userController');
 const verifiedUser = require('../middlewares/verifiedUser');
 
-router.get('/users', verifiedUser.isAdmin, userController.getAllUsers);
-router.get('/users/:userId', verifiedUser.isSignIn, userController.getUserById);
-router.post('/users', verifiedUser.isAdmin, userController.createUser);
-router.delete('/users/:userId', verifiedUser.isAdmin, userController.deleteUserById);
-router.put('/users/:userId', verifiedUser.isSignIn, userController.updateUserById);
+router.get('/users', verifiedUser.isLogIn, verifiedUser.isAdmin, userController.getAllUsers);
+router.get('/users/:userId', verifiedUser.isLogIn, verifiedUser.isAuthUser, userController.getUserById);
+router.post('/users', verifiedUser.isLogIn, verifiedUser.isAdmin, userController.createUser);
+router.delete('/users/:userId', verifiedUser.isLogIn, verifiedUser.isAdmin, userController.deleteUserById);
+router.put('/users/:userId', verifiedUser.isLogIn, verifiedUser.isAuthUser, userController.updateUserById);
 
 router.post('/signup', userController.signUp);
-router.post('/signin', userController.signIn);
+router.post('/signin', verifiedUser.signIn, userController.signIn);
 
 
 module.exports = router;
