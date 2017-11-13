@@ -1,0 +1,35 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "Simple CRUD App with Rest API using ExpressJs, Sequelize and Postgress",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "pg": "^7.4.0",
+    "sequelize": "^4.22.6",
+    "sequelize-cli": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fujianto/rest-api.git"
+  },
+  "keywords": [
+    "express",
+    "rest-api",
+    "nodejs"
+  ],
+  "author": "Septian A. Fujianto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fujianto/rest-api/issues"
+  },
+  "homepage": "https://github.com/fujianto/rest-api#readme"
+}
