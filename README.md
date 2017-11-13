@@ -26,7 +26,7 @@ Create '.env' file in the app root directory. Put your App secret key on it. You
  ```
 
 ## Client side test
-To test how the api working in the real world scenarion, you can test the demo using the following routes.
+To test how the api works in real world scenario, you can test the demo using the following routes.
 
 **Sign In**
 
